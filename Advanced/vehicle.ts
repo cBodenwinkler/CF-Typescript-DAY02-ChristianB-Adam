@@ -1,5 +1,5 @@
 // Super Class-----------------------------------------------------------------:
-class Vehicles{
+class Vehicles {
     model = "";
     year = "";
     color = "";
@@ -11,18 +11,18 @@ class Vehicles{
         this.hp = hp;
     }
     //Place for Methods:
-    print() {
+    printer() {
         return `
-            Model: ${this.model}
-            Construction Year: ${this.year}
-            Color: ${this.color}
-            Hp: ${this.hp}
+            Model: ${this.model}<br>
+            Construction Year: ${this.year}<br>
+            Color: ${this.color}<br>
+            Hp: ${this.hp}<br>
         `
     }
 
     calculation() {
-        let calc = (this.year * this.hp) / 10;
-        return `The price for this vehicle will be: ${calc}€`; 
+        let calc = (+this.year * +this.hp) / 10;
+        return `The price for this vehicle will be: ${calc}€`;
     }
 
 }
@@ -40,19 +40,26 @@ class Motorbikes extends Vehicles {
         this.numSeats = numSeats;
     }
     //Place for Methods:
-    print() {
+    printer() {
         return `
-            ${super.print()}    Fuel Type: ${this.fuelType}
-            Km Left: ${this.kmLeft}
-            Number Of Seats: ${this.numSeats}
+            ${super.printer()}
+            Fuel Type: ${this.fuelType}<br>
+            Km Left: ${this.kmLeft}<br>
+            Number Of Seats: ${this.numSeats}<br>
         `
 
-    //Return values from above
+        //Return values from above
 
 
+    }
+    calculation() {
+        let calc = (+this.year * +this.hp) / 50;
+        return `The price for this vehicle will be: ${calc}€`;
+    }
 }
 
 //Trucks
+
 class Trucks extends Vehicles {
     fuelType;
     kmLeft;
@@ -64,14 +71,19 @@ class Trucks extends Vehicles {
         this.numSeats = numSeats;
     }
     //Place for Methods:
-    print() {
+    printer() {
         return `
-            ${super.print()}    Fuel Type: ${this.fuelType}
-            Km Left: ${this.kmLeft}
-            Number Of Seats: ${this.numSeats}
+            ${super.printer()}
+            Fuel Type: ${this.fuelType}<br>
+            Km Left: ${this.kmLeft}<br>
+            Number Of Seats: ${this.numSeats}<br>
         `
+    }
+    calculation() {
+        let calc = (+this.year * +this.hp) / 5;
+        return `The price for this vehicle will be: ${calc}€`;
+    }
 }
-
 
 
 
@@ -82,5 +94,17 @@ let motorbike = new Motorbikes("Honda", 2019, "gray", 210, "petrol", 1500, 1);
 let truck = new Trucks("Scania", 2015, "green", 500, "diesel", 20000, 2);
 
 
-console.log(vehicle1.print());
+console.log(vehicle1.printer());
 console.log(vehicle1.calculation());
+
+
+let arra = [vehicle1, vehicle2, motorbike, truck];
+for (let i = 0; i < arra.length; i++) {
+
+    $(`#result${i + 1}`).html(arra[i].printer());
+    $(`#btn${i + 1}`).on("click", function () {
+
+        $(`#price${i + 1}`).html(arra[i].calculation())
+    })
+
+}

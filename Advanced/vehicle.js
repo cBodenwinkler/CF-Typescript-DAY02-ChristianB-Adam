@@ -24,11 +24,11 @@ var Vehicles = /** @class */ (function () {
         this.hp = hp;
     }
     //Place for Methods:
-    Vehicles.prototype.print = function () {
-        return "\n            Model: " + this.model + "\n            Construction Year: " + this.year + "\n            Color: " + this.color + "\n            Hp: " + this.hp + "\n        ";
+    Vehicles.prototype.printer = function () {
+        return "\n            Model: " + this.model + "<br>\n            Construction Year: " + this.year + "<br>\n            Color: " + this.color + "<br>\n            Hp: " + this.hp + "<br>\n        ";
     };
     Vehicles.prototype.calculation = function () {
-        var calc = (this.year * this.hp) / 10;
+        var calc = (+this.year * +this.hp) / 10;
         return "The price for this vehicle will be: " + calc + "\u20AC";
     };
     return Vehicles;
@@ -45,9 +45,13 @@ var Motorbikes = /** @class */ (function (_super) {
         return _this;
     }
     //Place for Methods:
-    Motorbikes.prototype.print = function () {
-        return "\n            " + _super.prototype.print.call(this) + "    Fuel Type: " + this.fuelType + "\n            Km Left: " + this.kmLeft + "\n            Number Of Seats: " + this.numSeats + "\n        ";
+    Motorbikes.prototype.printer = function () {
+        return "\n            " + _super.prototype.printer.call(this) + "\n            Fuel Type: " + this.fuelType + "<br>\n            Km Left: " + this.kmLeft + "<br>\n            Number Of Seats: " + this.numSeats + "<br>\n        ";
         //Return values from above
+    };
+    Motorbikes.prototype.calculation = function () {
+        var calc = (+this.year * +this.hp) / 50;
+        return "The price for this vehicle will be: " + calc + "\u20AC";
     };
     return Motorbikes;
 }(Vehicles));
@@ -62,8 +66,12 @@ var Trucks = /** @class */ (function (_super) {
         return _this;
     }
     //Place for Methods:
-    Trucks.prototype.print = function () {
-        return "\n            " + _super.prototype.print.call(this) + "    Fuel Type: " + this.fuelType + "\n            Km Left: " + this.kmLeft + "\n            Number Of Seats: " + this.numSeats + "\n        ";
+    Trucks.prototype.printer = function () {
+        return "\n            " + _super.prototype.printer.call(this) + "\n            Fuel Type: " + this.fuelType + "<br>\n            Km Left: " + this.kmLeft + "<br>\n            Number Of Seats: " + this.numSeats + "<br>\n        ";
+    };
+    Trucks.prototype.calculation = function () {
+        var calc = (+this.year * +this.hp) / 5;
+        return "The price for this vehicle will be: " + calc + "\u20AC";
     };
     return Trucks;
 }(Vehicles));
@@ -72,5 +80,15 @@ var vehicle1 = new Vehicles("BMW", 2016, "black", 200);
 var vehicle2 = new Vehicles("Tesla", 2020, "red", 450);
 var motorbike = new Motorbikes("Honda", 2019, "gray", 210, "petrol", 1500, 1);
 var truck = new Trucks("Scania", 2015, "green", 500, "diesel", 20000, 2);
-console.log(vehicle1.print());
+console.log(vehicle1.printer());
 console.log(vehicle1.calculation());
+var arra = [vehicle1, vehicle2, motorbike, truck];
+var _loop_1 = function (i) {
+    $("#result" + (i + 1)).html(arra[i].printer());
+    $("#btn" + (i + 1)).on("click", function () {
+        $("#price" + (i + 1)).html(arra[i].calculation());
+    });
+};
+for (var i = 0; i < arra.length; i++) {
+    _loop_1(i);
+}
