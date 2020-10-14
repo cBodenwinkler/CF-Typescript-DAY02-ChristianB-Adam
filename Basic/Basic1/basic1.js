@@ -8,10 +8,9 @@ var Person = /** @class */ (function () {
         this.jobTitle = jobTitle;
     }
     Person.prototype.returnString = function () {
-        return "Hello there, My name is " + this.name + " and I am " + this.age + " years old, and I am a " + this.jobTitle;
-    }
+        return "Hello there, My name is " + this.name + ", I am " + this.age + " years old and I am a " + this.jobTitle + ".";
+    };
     return Person;
 }());
-
-var person1 = new Person('Chris', 29, 'WebDev');
+var person1 = new Person('Christian', 29, 'WebDev');
 console.log(person1.returnString());
