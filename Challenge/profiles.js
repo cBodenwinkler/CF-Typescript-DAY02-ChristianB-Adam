@@ -43,8 +43,8 @@ for (var i in profileArr) {
     _loop_1(i);
 }
 var _loop_2 = function (i) {
-    $("#favCard" + i).on("dblclick", function () {
-        $(".favourite").html(profileArr[i].render(i));
+    $("#favCard" + i).one("dblclick", function () {
+        $(".favourite").append(profileArr[i].render(i));
         $(".removeP" + i).remove(".removeP" + i);
         $(".myClass" + i).html(profileArr[i].render2(i));
     });

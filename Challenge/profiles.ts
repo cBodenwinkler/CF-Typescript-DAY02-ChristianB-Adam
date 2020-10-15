@@ -76,11 +76,12 @@ for (let i in profileArr) {
 }
 
 for (let i in profileArr) {
-    $(`#favCard${i}`).on("dblclick",function(){
-        $(`.favourite`).html(profileArr[i].render(i));
+    $(`#favCard${i}`).one("dblclick",function(){
+        $(`.favourite`).append(profileArr[i].render(i));
         $(`.removeP${i}`).remove(`.removeP${i}`);
         $(`.myClass${i}`).html(profileArr[i].render2(i));
     });
+    
 }
 
 
